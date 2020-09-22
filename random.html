@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RANDOM QUOTE MACHINE</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+     
+
+    <style>
+
+      body {
+         min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: "Poppins", sans-serif;
+
+      }
+
+       #navbar {
+        top: 0;
+        left: 0;
+        right: 0;
+        position: fixed;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 40px;
+        background-color: #333333;
+        padding-left: 50px;
+      }
+
+      #navbar a {
+        text-decoration: none;
+        color: white;
+        margin: 20px;
+      }
+
+
+      #wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        background-color: green;
+        width: 800px;
+        height: 500px;
+      }
+
+      #quote-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        /* align-items: center; */
+        margin: 0 auto;
+        width: 600px;
+        background-color: white;
+        height: 200px;
+        border-radius: 5px;
+      }
+
+       @media screen and (max-width: 676px) {
+        #quote-box {
+          width: 80vw;
+        }
+      }
+
+       @media screen and (max-width: 676px) {
+        p {
+          font-size: 12px;
+        }
+      }
+
+
+      .buttons {
+        display: flex;   
+        justify-content: space-between;
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <nav id="navbar">
+    <a href="../index.html" target="blank">Home</a>
+    <a href="../#projects-section" target="blank">work</a>
+  </nav>
+  <br />
+   
+    <div id="wrap">
+      <div id="quote-box">
+        <blockquote class="blockquote text-center" id="block-quote">
+          <p class="text-capitalize">
+            <i class="fa fa-quote-left fa-2x mr-3"></i>
+            <span id="text">
+              when i am right, people never remember but when i'm wrong people
+              never forget.</span
+            >
+          </p>
+          <footer class="blockquote-footer text-left" id="author">
+            Ernest
+          </footer>
+        </blockquote>
+
+        <div class="buttons">
+          <div class="ml-4 social-div">
+            <a href="twitter.com/intent/tweet" target="blank" id="tweet-quote"
+              ><button type="button" class="btn bg-danger">
+                <i class="fa fa-twitter text-white"></i></button
+            ></a>
+            <a href="facebook" target="blank"
+              ><button type="button" class="btn bg-danger">
+                <i class="fa fa-facebook text-white"></i></button
+            ></a>
+          </div>
+          <button class="btn btn-danger mr-4" id="new-quote">
+            New Quote
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <script >
+      const randomList = [
+        {
+          id: 1,
+          text: "I think the perfection of love is that it's not perfect.",
+          author: "Taylor Swift",
+        },
+
+        {
+          id: 2,
+          text:
+            " When i'm right, people never remember but when i'm wrong people never forget.",
+          author: "Ernest",
+        },
+
+        {
+          id: 3,
+          text: " Life without love is like a tree without blossoms or fruit.",
+          author: "Khalil Gibran",
+        },
+      ];
+
+      const quote = document.getElementById("text");
+      const author = document.getElementById("author");
+      const btn = document.getElementById("new-quote");
+
+      let currentItem = 0;
+      window.addEventListener("DOMContentLoaded", function () {
+        const item = showQuote(currentItem);
+      });
+
+      function showQuote() {
+        const item = randomList[getRandomNumber()];
+        quote.textContent = item.text;
+        author.textContent = item.author;
+      }
+      btn.addEventListener("click", function () {
+          for (let i = 0; i < randomList.length; i++) {
+                
+          }
+          showQuote();
+           });
+         function getRandomNumber () {
+             return Math.floor(Math.random() * randomList.length);
+         }
+    </script>
+  </body>
+</html
+        
+
+
+
