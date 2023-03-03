@@ -29,26 +29,7 @@
 
       }
 
-       #navbar {
-        top: 0;
-        left: 0;
-        right: 0;
-        position: fixed;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 40px;
-        background-color: #333333;
-        padding-left: 50px;
-      }
-
-      #navbar a {
-        text-decoration: none;
-        color: white;
-        margin: 20px;
-      }
-
-
+        
       #wrap {
         display: flex;
         flex-direction: column;
@@ -97,10 +78,8 @@
         <blockquote class="blockquote text-center" id="block-quote">
           <p class="text-capitalize">
             <i class="fa fa-quote-left fa-2x mr-3"></i>
-            <span id="text">
-              when i am right, people never remember but when i'm wrong people
-              never forget.</span
-            >
+            <span id="text"></span>
+             
           </p>
           <footer class="blockquote-footer text-left" id="author">
             Ernest
@@ -109,11 +88,11 @@
 
         <div class="buttons">
           <div class="ml-4 social-div">
-            <a href="twitter.com/intent/tweet" target="blank" id="tweet-quote"
+            <a href="https://twitter.com/intent/tweet" target="blank" id="tweet-quote"
               ><button type="button" class="btn bg-danger">
                 <i class="fa fa-twitter text-white"></i></button
             ></a>
-            <a href="facebook" target="blank"
+            <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="blank"
               ><button type="button" class="btn bg-danger">
                 <i class="fa fa-facebook text-white"></i></button
             ></a>
@@ -126,50 +105,35 @@
     </div>
     
     <script >
-      const randomList = [
-        {
-          id: 1,
-          text: "I think the perfection of love is that it's not perfect.",
-          author: "Taylor Swift",
-        },
+      
+          const quote = document.getElementById("text");
+          const author = document.getElementById("author");
+          const btn = document.getElementById("new-quote");
+          let quotes = JSON.parse(localStorage.getItem('quotes'))
+          
 
-        {
-          id: 2,
-          text:
-            " When i'm right, people never remember but when i'm wrong people never forget.",
-          author: "Ernest",
-        },
+      async function getQuotes() {
+            let res = await fetch("https://type.fit/api/quotes");
+            let data = await res.json();
+            localStorage.setItem('quotes', JSON.stringify(data))
+            return data
+          } 
+          
+         function showQuote(randomNumber) {
+             let item = quotes[randomNumber]
+             quote.textContent = item.text;
+             author.textContent = item.author;
+         } 
+          
+             
+             btn.addEventListener("click", function () {
+              let randomNumber = Math.floor(Math.random() * quotes.length);
+                  showQuote(randomNumber);
+             });
 
-        {
-          id: 3,
-          text: " Life without love is like a tree without blossoms or fruit.",
-          author: "Khalil Gibran",
-        },
-      ];
-
-      const quote = document.getElementById("text");
-      const author = document.getElementById("author");
-      const btn = document.getElementById("new-quote");
-
-      let currentItem = 0;
-      window.addEventListener("DOMContentLoaded", function () {
-        const item = showQuote(currentItem);
+         window.addEventListener("DOMContentLoaded", function () {
+          showQuote(0)
       });
-
-      function showQuote() {
-        const item = randomList[getRandomNumber()];
-        quote.textContent = item.text;
-        author.textContent = item.author;
-      }
-      btn.addEventListener("click", function () {
-          for (let i = 0; i < randomList.length; i++) {
-                
-          }
-          showQuote();
-           });
-         function getRandomNumber () {
-             return Math.floor(Math.random() * randomList.length);
-         }
     </script>
   </body>
 </html
